@@ -26,12 +26,15 @@
 
         <script>
             const firebaseConfig = {
-            apiKey: "AIzaSy...",
-            authDomain: "sumup-app-ea063.firebaseapp.com",
-            projectId: "sumup-app-ea063",
-            appId: "1:274498903756:web:6c290066fe391ead59ec69"
+              apiKey: "AIzaSyCa9SNknAOD769bxK3PRt-_JurbO4-R4KA",
+              authDomain: "sumup-app-ea063.firebaseapp.com",
+              projectId: "sumup-app-ea063",
+              storageBucket: "sumup-app-ea063.appspot.com",
+              messagingSenderId: "274498903756",
+              appId: "1:274498903756:web:6c290066fe391ead59ec69"
             };
-
+            
+            // ✅ Important fix
             if (!firebase.apps.length) {
                 firebase.initializeApp(firebaseConfig);
             }
