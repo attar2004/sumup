@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tips - SumUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>💡 Daily Tips</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="practice.html">Practice</a>
+        <a href="tricks.html">Tricks</a>
+    </nav>
+
+</header>
+
+<section class="tips-container">
+
+    <div class="tips-heading">
+        <h2>📚 Smart Learning Tips</h2>
+    </div>
+
+    <p class="tips-subtitle">Learn smart, not hard 💡</p>
+
+    <div class="tips-row">
+
+        <!-- Tip 1 -->
+        <div class="tip-box">
+            <h3>✍️ Write Clearly</h3>
+            <p>Write each step properly so you don’t miss small mistakes.</p>
+
+            <button onclick="window.location.href='notebook.html'">
+                Open Notebook 📒
+            </button>
+        </div>
+
+        <!-- Tip 2 -->
+        <div class="tip-box">
+            <h3>🔁 Revise Concepts</h3>
+            <p>Revise your notes daily to strengthen memory.</p>
+
+            <button onclick="window.location.href='notebook.html'">
+                Revise Notes 📖
+            </button>
+        </div>
+
+        <!-- Tip 3 -->
+        <div class="tip-box">
+            <h3>🧩 Break Problems Smartly</h3>
+
+            <p><b>Step 1:</b> Round numbers (48 → 50)</p>
+            <p><b>Step 2:</b> Solve easier version</p>
+            <p><b>Step 3:</b> Adjust answer</p>
+
+            <p><b>Example:</b><br>
+            48 + 29 → (50 + 29) - 2 = 77
+            </p>
+
+            <button onclick="showExamples()">
+                See More 👇
+            </button>
+        </div>
+
+    </div>
+
+    <!-- 📖 EXAMPLES (HIDDEN FIRST) -->
+    <div id="examples" style="display:none; margin-top:20px;">
+
+        <h3>Examples</h3>
+
+        <p><b>Addition:</b> 48 + 29 → (50 + 29) - 2 = 77</p>
+        <p><b>Multiplication:</b> 12 × 19 → (12 × 20) - 12 = 240 - 12 = 228</p>
+        <p><b>Subtraction:</b> 100 - 47 → 53</p>
+        <p><b>Division:</b> 84 ÷ 4 → 80 ÷ 4 = 20, 4 ÷ 4 = 1 → 21</p>
+
+    </div>
+
+    <div class="action-area">
+        <button onclick="window.location.href='practice.html'">
+            🚀 Start Practice
+        </button>
+    </div>
+
+</section>
+
+<script>
+        let tips = document.querySelectorAll(".tip-box");
+
+        let random = Math.floor(Math.random() * tips.length);
+
+        tips[random].style.background = "#ffd6e7";
+        tips[random].style.fontWeight = "bold";
+</script>
+
+<script>
+    function toggleTip(element) {
+        let detail = element.querySelector(".tip-detail");
+        detail.style.display = (detail.style.display === "block") ? "none" : "block";
+    }
+</script>
+
+<script>
+    function showExamples() {
+        let ex = document.getElementById("examples");
+        ex.style.display = "block";
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tricks - SumUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>🧠 Maths Tricks</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="practice.html">Practice</a>
+        <a href="tips.html">Tips</a>
+    </nav>
+</header>
+
+<section class="tricks-container">
+
+    <h2>🧠 Smart Maths Tricks</h2>
+
+    <!-- Trick 1 -->
+    <div class="trick-box">
+        <h3 onclick="toggleTrick(this)">⚡ Multiply by 5</h3>
+
+        <div class="trick-detail">
+            <p>Step 1: Multiply number by 10</p>
+            <p>Step 2: Divide by 2</p>
+            <p><b>Example:</b> 24 × 5 = 120</p>
+
+            <!-- BUTTONS -->
+            <button onclick="goPractice('mul5')">Try This 🚀</button>
+            <button onclick="saveNote(`Multiply by 5 Trick:
+                Step 1: Multiply number by 10
+                Step 2: Divide by 2
+                Example: 24 × 5 = 120`)">Save 📒
+            </button>
+        </div>
+    </div>
+
+    <!-- Trick 2 -->
+    <div class="trick-box">
+        <h3 onclick="toggleTrick(this)">⚡ Square Ending in 5</h3>
+
+        <div class="trick-detail">
+            <p>Step 1: Multiply first digit with next number</p>
+            <p>Step 2: Add 25 at end</p>
+            <p><b>Example:</b> 25² = 625</p>
+
+            <button onclick="goPractice('square5')">Try This 🚀</button>
+            <button onclick="saveNote(`Square ending in 5 Trick:-
+            Step 1: Multiply first digit with next number
+            Step 2: Add 25 at end
+            Example:25² = 625`)">Save 📒
+            </button>
+        </div>
+    </div>
+
+    <!-- Trick 3 -->
+    <div class="trick-box">
+    <h3 onclick="toggleTrick(this)">⚡ Multiply by 9</h3>
+
+        <div class="trick-detail">
+            <p>Multiply by 10 and subtract the number</p>
+            <p><b>Example:</b> 23 × 9 = (23×10) - 23 = 230 - 23 = 207</p>
+
+            <button onclick="goPractice('mul9')">Try This 🚀</button>
+
+            <button onclick="saveNote(`Multiply by 9 Trick:-
+                Multiply by 10 then subtract number
+                Example: 23 × 9 (23×10) - 23 = 230 - 23 = 207`)">
+                Save 📒
+            </button>
+        </div>
+        
+    </div>
+
+
+    <div class="trick-box">
+    <h3 onclick="toggleTrick(this)">⚡ Add Fast</h3>
+
+        <div class="trick-detail">
+            <p>Round numbers first</p>
+            <p><b>Example:</b> 48 + 29 → (50 + 29) - 2 = 77</p>
+
+            <button onclick="goPractice('addFast')">Try This 🚀</button>
+
+            <button onclick="saveNote(`Fast Addition Trick:
+                Round numbers then adjust
+                Example: 48 + 29 → (50 + 29) - 2 = 77`)">
+                Save 📒
+            </button>
+        </div>
+    </div>
+
+    <div class="action-area">
+        <button onclick="window.location.href='practice.html'">
+            🚀 Practice All Tricks
+        </button>
+    </div>
+
+</section>
+
+<script>
+    function toggleTrick(element) {
+        let detail = element.querySelector(".trick-detail");
+        detail.style.display = (detail.style.display === "block") ? "none" : "block";
+    }
+</script>
+
+<script>
+    function toggleTrick(element) {
+        let detail = element.nextElementSibling;
+        detail.style.display =
+            (detail.style.display === "block") ? "none" : "block";
+    }
+
+    function goPractice(type) {
+        localStorage.setItem("practiceType",type);
+        window.location.href = "practice.html";
+    }
+
+    function saveNote(text) {
+    let oldNotes = localStorage.getItem("myNotes") || "";
+    let newNotes = oldNotes + "\n" + text;
+    localStorage.setItem("myNotes", newNotes);
+
+    // ✅ show message without button
+    let msg = document.createElement("p");
+    msg.innerText = "Saved in notes 📒";
+    msg.style.position = "fixed";
+    msg.style.bottom = "20px";
+    msg.style.right = "20px";
+    msg.style.background = "#4CAF50";
+    msg.style.color = "white";
+    msg.style.padding = "10px 15px";
+    msg.style.borderRadius = "10px";
+
+    document.body.appendChild(msg);
+
+    setTimeout(() => {
+        msg.remove();
+    }, 2000);
+    }
+</script>
+
+</body>
+</html>

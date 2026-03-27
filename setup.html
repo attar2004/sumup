@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Test - SumUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Start Your Test 🧮</h1>
+</header>
+
+<section>
+    <label>Select Difficulty:</label>
+    <select id="difficulty">
+        <option value="20">Easy</option>
+        <option value="50">Medium</option>
+        <option value="100">Hard</option>
+    </select>
+
+    <br><br>
+
+    <label>Select Operation:</label>
+    <select id="operation">
+        <option value="add">Addition</option>
+        <option value="sub">Subtraction</option>
+        <option value="mul">Multiplication</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="startTest()">Start Test</button>
+</section>
+
+<script>
+function startTest() {
+    let difficulty = document.getElementById("difficulty").value;
+    let operation = document.getElementById("operation").value;
+
+    localStorage.setItem("difficulty", difficulty);
+    localStorage.setItem("operation", operation);
+
+    window.location.href = "practice.html";
+}
+</script>
+
+</body>
+</html>

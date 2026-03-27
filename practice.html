@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Practice - SumUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>SumUp Practice 🧮</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="tricks.html">Tricks</a>
+        <a href="tips.html">Tips</a>
+    </nav>
+</header>
+
+<section>
+
+    <!-- TEST AREA -->
+    <div id="testArea" style="display:none;">
+        <h2>30-Second Speed Test ⏱️</h2>
+        <p id="timer">Time: 30</p>
+        <p id="question"></p>
+
+        <input type="number" id="answer">
+        <button onclick="checkAnswer()">Submit</button>
+        <p id="feedback"></p>
+
+        <p id="score">Score: 0</p>
+    </div>
+
+</section>
+
+<script src="js/script.js"></script>
+
+<script>
+    // 🚀 auto start test when page loads
+    startTest();
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyCa9SNknAOD769bxK3PRt-_JurbO4-R4KA",
+  authDomain: "sumup-app-ea063.firebaseapp.com",
+  projectId: "sumup-app-ea063",
+  storageBucket: "sumup-app-ea063.firebasestorage.app",
+  messagingSenderId: "274498903756",
+  appId: "1:274498903756:web:6c290066fe391ead59ec69"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+</script>
+
+</body>
+</html>
+
+
+
+

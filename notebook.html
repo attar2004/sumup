@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Notes - SumUp</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+<body>
+
+    <header>
+        <h1>📒 My Notebook</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="tips.html">Tips</a>
+            <a href="tricks.html">Tricks</a>
+        </nav>
+    </header>
+
+    <section class="notebook">
+
+        <h2>✏️ Write Your Notes</h2>
+
+        <textarea id="notesArea" placeholder="Write your notes here..."></textarea>
+
+        <button onclick="saveNotes()">Save Notes 💾</button>
+        <p id="savedMsg"></p>
+
+
+        <br><br>
+
+        <button onclick="saveNotes()">💾 Save Notes</button>
+
+    </section>
+
+    <script>
+    let saved = localStorage.getItem("myNotes");
+    if (saved) {
+        document.getElementById("notesArea").value = saved;
+    }
+
+    function saveNotes() {
+        let text = document.getElementById("notesArea").value;
+        localStorage.setItem("myNotes", text);
+        let msg = document.createElement("p");
+        msg.innerText = "Saved in notes ✅";
+        msg.style.color = "green";
+        msg.style.fontWeight = "bold";
+
+        document.body.appendChild(msg);
+
+        // auto remove after 2 sec
+        setTimeout(() => {
+            msg.remove();
+        }, 2000);
+    }
+    </script>
+
+</body>
+</html>

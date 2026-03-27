@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup - SumUp</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body class="auth-page">
+
+        <div class="auth-box">
+            <h2>💖 Create Account</h2>
+
+            <input type="email" id="email" placeholder="Enter Email ✉️"><br>
+            <input type="password" id="password" placeholder="Enter Password 🔐"><br>
+
+            <button type="button" onclick="signup()">Signup ✨</button>
+
+            <p id="msg"></p>
+
+            <p>Already have an account? <a href="login.html">Login 💫</a></p>
+        </div>
+
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+        <script>
+            const firebaseConfig = {
+            apiKey: "AIzaSy...",
+            authDomain: "sumup-app-ea063.firebaseapp.com",
+            projectId: "sumup-app-ea063",
+            appId: "1:274498903756:web:6c290066fe391ead59ec69"
+            };
+
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+
+            function signup() {
+                let email = document.getElementById("email").value;
+                let password = document.getElementById("password").value;
+
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(() => {
+                    alert("Account Created ✅");
+                    window.location.href = "login.html";
+                })
+                .catch(error => {
+                    document.getElementById("msg").innerText = error.message;
+                });
+            }
+        </script>
+
+    </body>
+</html>

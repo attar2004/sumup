@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result - SumUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Test Result 🧮</h1>
+    <button onclick="toggleDarkMode()">🌙</button>
+</header>
+
+<section>
+    <h2>Your Result</h2>
+
+    <div class="gauge">
+        <div class="gauge-body">
+            <div class="gauge-fill" id="gaugeFill"></div>
+            <div class="gauge-cover" id="gaugeText"></div>
+        </div>
+    </div>
+
+    <p id="scoreDetails"></p>
+
+    <div id="wrongSection"></div>
+
+    <button onclick="goBack()">Go Back</button>
+</section>
+
+<script>
+
+let score = parseInt(localStorage.getItem("score"));
+let total = parseInt(localStorage.getItem("totalQuestions"));
+let best = localStorage.getItem("bestStreak");
+
+// load saved theme
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark-mode");
+}
+
+let percentage = 0;
+
+if (total > 0) {
+    percentage = (score / total) * 100;
+}
+
+let bestScore = localStorage.getItem("bestScore") || 0;
+
+if (percentage > bestScore) {
+    bestScore = percentage;
+    localStorage.setItem("bestScore", bestScore);
+}
+
+document.querySelector(".gauge")
+.style.setProperty("--percentage", percentage);
+
+document.getElementById("gaugeText").innerText =
+    percentage.toFixed(0) + "%";
+
+document.getElementById("scoreDetails").innerHTML =
+    "Total Questions: " + total + "<br>" +
+    "Correct: " + score + "<br>" +
+    "Wrong: " + (total - score);
+
+document.getElementById("scoreDetails").innerHTML +=
+    "<br>Best Streak: " + best;
+
+let wrongData = JSON.parse(localStorage.getItem("wrongAnswers")) || [];
+
+if (wrongData.length > 0) {
+    let html = "<h3 class='wrong-title'>❌ Wrong Answers</h3>";
+
+    wrongData.forEach(item => {
+        html += `
+            <div class="wrong-card">
+                <p><strong>Q:</strong> ${item.question}</p>
+                <p class="your">Your Answer: ${item.yourAnswer}</p>
+                <p class="correct">Correct Answer: ${item.correctAnswer}</p>
+            </div>
+        `;
+    });
+
+    document.getElementById("wrongSection").innerHTML = html;
+}
+
+function goHome() {
+    window.location.href = "index.html";
+}
+
+if (percentage == 100) {
+    showConfetti();
+}
+
+function showConfetti() {
+    for (let i = 0; i < 100; i++) {
+        let confetti = document.createElement("div");
+
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 3000);
+    }
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+
+    // save mode
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+}
+
+function goBack() {
+    let type = localStorage.getItem("practiceType");
+
+    if (type) {
+        window.location.href = "tricks.html"; // 🔥 go back to tricks
+    } else {
+        window.location.href = "index.html"; // normal
+    }
+}
+
+</script>
+
+</body>
+</html>
