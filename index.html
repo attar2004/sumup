@@ -1,184 +1,180 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>SumUp - Boost Your Calculation Speed</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <title>SumUp - Boost Your Calculation Speed</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-    <header>
-        <h1>SumUp 🧮</h1>
+        <header>
+            <h1>SumUp 🧮</h1>
+    
+            <button onclick="logout()">Logout 🚪</button>
+    
+            <p>Boost your calculation speed with daily practice and smart tricks.</p>
+    
+            <nav>
+                <a href="practice.html">Practice</a>
+                <a href="tricks.html">Tricks</a>
+                <a href="tips.html">Tips</a>
+            </nav>
+    
+        </header>
 
-        <button onclick="logout()">Logout 🚪</button>
-
-        <p>Boost your calculation speed with daily practice and smart tricks.</p>
-
-        <nav>
-            <a href="practice.html">Practice</a>
-            <a href="tricks.html">Tricks</a>
-            <a href="tips.html">Tips</a>
-        </nav>
-
-    </header>
-
-    <div class="side-note">
-        💡 Tip: Practice 10 mins daily → 2x faster brain!
-    </div>
-
-    <div class="hero">
-        <h2>✨ Practice Maths the Cute Way ✨</h2>
-        <p>Train your brain daily and become lightning fast ⚡</p>
-    </div>
-
-    <section>
-        <div class="dashboard">
-
-            <h2>✨ Welcome back Muffin ✨</h2>
-            <div class="stickers">🧠 ✏️ 📚 🧮 💡</div>
-            
-
-            <!-- 📊 STATS -->
-            <div class="stats">
-                <div class="card">
-                    <p>🔥 Best Streak</p>
-                    <h3 id="homeStreak">0</h3>
-                </div>
-
-                <div class="card">
-                    <p>📊 Last Score</p>
-                    <h3 id="homeScore">0%</h3>
-                </div>
-
-                <div class="card">
-                    <p>🏆 Best Score</p>
-                    <h3 id="bestScore">0%</h3>
-                </div>
+            <div class="side-note">
+                💡 Tip: Practice 10 mins daily → 2x faster brain!
             </div>
-
-            <!-- ➕ OPERATIONS -->
-                <h3>Choose Operation</h3>
-                    <div class="options">
-                        <button class="op-btn" onclick="selectOperation('add', this)">➕ Addition</button>
-                        <button class="op-btn" onclick="selectOperation('sub', this)">➖ Subtraction</button>
-                        <button class="op-btn" onclick="selectOperation('mul', this)">✖️ Multiplication</button>
-                        <button class="op-btn" onclick="selectOperation('div', this)">➗ Division</button>
+        
+            <div class="hero">
+                <h2>✨ Practice Maths the Cute Way ✨</h2>
+                <p>Train your brain daily and become lightning fast ⚡</p>
+            </div>
+        
+        <section>
+            <div class="dashboard">
+    
+                <h2>✨ Welcome back Muffin ✨</h2>
+                <div class="stickers">🧠 ✏️ 📚 🧮 💡</div>
+                
+    
+                <!-- 📊 STATS -->
+                <div class="stats">
+                    <div class="card">
+                        <p>🔥 Best Streak</p>
+                        <h3 id="homeStreak">0</h3>
                     </div>
-
-            <!-- 🎚️ DIFFICULTY -->
-                <h3>Select Difficulty</h3>
-                    <div class="options">
-                        <button class="diff-btn" onclick="selectDifficulty('20', this)">Easy</button>
-                        <button class="diff-btn" onclick="selectDifficulty('50', this)">Medium</button>
-                        <button class="diff-btn" onclick="selectDifficulty('100', this)">Hard</button>
+    
+                    <div class="card">
+                        <p>📊 Last Score</p>
+                        <h3 id="homeScore">0%</h3>
                     </div>
+    
+                    <div class="card">
+                        <p>🏆 Best Score</p>
+                        <h3 id="bestScore">0%</h3>
+                    </div>
+                </div>
+    
+                <!-- ➕ OPERATIONS -->
+                    <h3>Choose Operation</h3>
+                        <div class="options">
+                            <button class="op-btn" onclick="selectOperation('add', this)">➕ Addition</button>
+                            <button class="op-btn" onclick="selectOperation('sub', this)">➖ Subtraction</button>
+                            <button class="op-btn" onclick="selectOperation('mul', this)">✖️ Multiplication</button>
+                            <button class="op-btn" onclick="selectOperation('div', this)">➗ Division</button>
+                        </div>
+    
+                <!-- 🎚️ DIFFICULTY -->
+                    <h3>Select Difficulty</h3>
+                        <div class="options">
+                            <button class="diff-btn" onclick="selectDifficulty('20', this)">Easy</button>
+                            <button class="diff-btn" onclick="selectDifficulty('50', this)">Medium</button>
+                            <button class="diff-btn" onclick="selectDifficulty('100', this)">Hard</button>
+                        </div>
+    
+                <!-- 🚀 START -->
+                <button class="start-btn" onclick="startPractice()">Start Practice 🚀</button>
+    
+            </div>
+        </section>
 
-            <!-- 🚀 START -->
-            <button class="start-btn" onclick="startPractice()">Start Practice 🚀</button>
+            <script>
+                // 📊 LOAD STATS
+                let bestStreak = localStorage.getItem("bestStreak") || 0;
+                let score = localStorage.getItem("score") || 0;
+                let total = localStorage.getItem("totalQuestions") || 0;
+                let bestScore = localStorage.getItem("bestScore") || 0;
+        
+                let percent = 0;
+                if (total > 0) {
+                    percent = Math.round((score / total) * 100);
+                }
+        
+                let message = "";
+        
+                if (percent == 100) message = "🔥 Perfect! You're unstoppable!";
+                else if (percent >= 70) message = "💪 Great job! Keep going!";
+                else message = "🌱 Practice more, you’ll improve!";
+        
+                let msgBox = document.createElement("p");
+                msgBox.innerText = message;
+                msgBox.style.fontWeight = "bold";
+        
+                document.querySelector(".dashboard").appendChild(msgBox);
+        
+                document.getElementById("homeStreak").innerText = bestStreak;
+                document.getElementById("homeScore").innerText = percent + "%";
+                document.getElementById("bestScore").innerText = bestScore + "%";
+        
+                // 🎯 STORE USER CHOICE
+                let selectedOp = "";
+                let selectedDiff = "";
+        
+                // ➕➖✖️➗
+                function selectOperation(op, el) {
+                    selectedOp = op;
+        
+                    let buttons = document.querySelectorAll(".op-btn");
+                    buttons.forEach(btn => btn.classList.remove("active"));
+        
+                    el.classList.add("active");
+                }
+        
+                function selectDifficulty(diff, el) {
+                    selectedDiff = diff;
+        
+                    let buttons = document.querySelectorAll(".diff-btn");
+                    buttons.forEach(btn => btn.classList.remove("active"));
+        
+                    el.classList.add("active");
+                }
+        
+                function startPractice() {
+        
+                    if (selectedOp === "" || selectedDiff === "") {
+                        alert("Please select operation and difficulty!");
+                        return;
+                    }
+        
+                    localStorage.removeItem("practiceType");
+                    localStorage.setItem("operation", selectedOp);
+                    localStorage.setItem("difficulty", selectedDiff);
+        
+                    window.location.href = "practice.html";
+                }
+        
+                let tips = [
+                        "💡 Practice 10 mins daily",
+                        "⚡ Break big problems into small steps",
+                        "🧠 Learn patterns, not just answers",
+                        "🔥 Speed comes with repetition",
+                        "🎯 Focus > Time",
+                        "💡 Small progress each day adds up to big results.",
+                        "💡 Mistakes are proof that you are trying.",
+                        "💡 Little by little, day by day, you become who you want to be.",
+                        "💡 Your habits decide your future.",
+                        "💡 Stay consistent. Even slow progress is progress.",
+                        "💡 Start small, but start now."
+                                    
+                ];
+        
+                let randomTip = tips[Math.floor(Math.random() * tips.length)];
+                document.querySelector(".side-note").innerText = randomTip;
+        
+                let hour = new Date().getHours();
+                let greeting = "Welcome";
+        
+                if (hour < 12) greeting = "🌅 Good Morning Muffin";
+                else if (hour < 18) greeting = "🌤️ Good Afternoon Muffin";
+                else greeting = "🌙 Good Evening Muffin";
+        
+                document.querySelector("h2").innerText = greeting;
+        
+                function logout() {
+                    alert("Logged Out");
+                }
+        
+            </script>
 
-        </div>
-    </section>
-
-    <script>
-        // 📊 LOAD STATS
-        let bestStreak = localStorage.getItem("bestStreak") || 0;
-        let score = localStorage.getItem("score") || 0;
-        let total = localStorage.getItem("totalQuestions") || 0;
-        let bestScore = localStorage.getItem("bestScore") || 0;
-
-        if (localStorage.getItem("loggedIn") !== "true") {
-            window.location.href = "login.html";
-        }
-
-        let percent = 0;
-        if (total > 0) {
-            percent = Math.round((score / total) * 100);
-        }
-
-        let message = "";
-
-        if (percent == 100) message = "🔥 Perfect! You're unstoppable!";
-        else if (percent >= 70) message = "💪 Great job! Keep going!";
-        else message = "🌱 Practice more, you’ll improve!";
-
-        let msgBox = document.createElement("p");
-        msgBox.innerText = message;
-        msgBox.style.fontWeight = "bold";
-
-        document.querySelector(".dashboard").appendChild(msgBox);
-
-        document.getElementById("homeStreak").innerText = bestStreak;
-        document.getElementById("homeScore").innerText = percent + "%";
-        document.getElementById("bestScore").innerText = bestScore + "%";
-
-        // 🎯 STORE USER CHOICE
-        let selectedOp = "";
-        let selectedDiff = "";
-
-        // ➕➖✖️➗
-        function selectOperation(op, el) {
-            selectedOp = op;
-
-            let buttons = document.querySelectorAll(".op-btn");
-            buttons.forEach(btn => btn.classList.remove("active"));
-
-            el.classList.add("active");
-        }
-
-        function selectDifficulty(diff, el) {
-            selectedDiff = diff;
-
-            let buttons = document.querySelectorAll(".diff-btn");
-            buttons.forEach(btn => btn.classList.remove("active"));
-
-            el.classList.add("active");
-        }
-
-        function startPractice() {
-
-            if (selectedOp === "" || selectedDiff === "") {
-                alert("Please select operation and difficulty!");
-                return;
-            }
-
-            localStorage.removeItem("practiceType");
-            localStorage.setItem("operation", selectedOp);
-            localStorage.setItem("difficulty", selectedDiff);
-
-            window.location.href = "practice.html";
-        }
-
-        let tips = [
-                "💡 Practice 10 mins daily",
-                "⚡ Break big problems into small steps",
-                "🧠 Learn patterns, not just answers",
-                "🔥 Speed comes with repetition",
-                "🎯 Focus > Time",
-                "💡 Small progress each day adds up to big results.",
-                "💡 Mistakes are proof that you are trying.",
-                "💡 Little by little, day by day, you become who you want to be.",
-                "💡 Your habits decide your future.",
-                "💡 Stay consistent. Even slow progress is progress.",
-                "💡 Start small, but start now."
-                            
-        ];
-
-        let randomTip = tips[Math.floor(Math.random() * tips.length)];
-        document.querySelector(".side-note").innerText = randomTip;
-
-        let hour = new Date().getHours();
-        let greeting = "Welcome";
-
-        if (hour < 12) greeting = "🌅 Good Morning Muffin";
-        else if (hour < 18) greeting = "🌤️ Good Afternoon Muffin";
-        else greeting = "🌙 Good Evening Muffin";
-
-        document.querySelector("h2").innerText = greeting;
-
-        function logout() {
-            alert("Logged Out");
-        }
-
-    </script>
-
-</body>
+    </body>
 </html>
