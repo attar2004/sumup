@@ -204,6 +204,8 @@ function checkAnswer() {
     if (userAns === correct) {
         score++;
         streak++;
+    } else {
+        streak = 0;
         
         // ✅ SAVE WRONG ANSWER
         let questionText;
