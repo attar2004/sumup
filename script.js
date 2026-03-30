@@ -226,14 +226,6 @@ function checkAnswer() {
             correctAnswer: correct
         });
     }
-    
-    window.onload = function() {
-            let saved = localStorage.getItem("myNotes");
-            if (saved) {
-                document.getElementById("notesArea").value = saved;
-            }
-        }
-            
 
     document.getElementById("score").innerText = "Score: " + score;
     
