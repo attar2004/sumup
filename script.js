@@ -201,7 +201,7 @@ function checkAnswer() {
 
     totalQuestions++;
 
-    if (userAns == correct) {
+    if (userAns === correct) {
         score++;
         streak++;
         
