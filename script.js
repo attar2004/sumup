@@ -204,13 +204,7 @@ function checkAnswer() {
     if (userAns == correct) {
         score++;
         streak++;
-        // ✅ SHOW CORRECT
-        document.getElementById("feedback").innerText = "Correct ✅";
-    } else {
-        streak = 0;
-        // ❌ SHOW WRONG
-        document.getElementById("feedback").innerText = "Wrong ❌";
-
+        
         // ✅ SAVE WRONG ANSWER
         let questionText;
         let type = localStorage.getItem("practiceType");
