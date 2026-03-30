@@ -21,7 +21,10 @@ function startTest() {
         return;
     }
 
-    document.getElementById("testArea").style.display = "block";
+    let testArea = document.getElementById("testArea");
+        if (testArea) {
+            testArea.style.display = "block";
+        }
 
     score = 0;
     totalQuestions = 0;
