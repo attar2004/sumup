@@ -234,10 +234,8 @@ function checkAnswer() {
     localStorage.setItem("streak", streak);
     document.getElementById("score").innerText = "Score: " + score;
     
-    document.getElementById("feedback").innerText = "";
     // show feedback first, then go next question after delay
     setTimeout(function() {
-        document.getElementById("feedback").innerText = "";
         generateQuestion();
     }, 800); // 0.8 second delay
 }
