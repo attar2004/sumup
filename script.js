@@ -202,7 +202,8 @@ function checkAnswer() {
     totalQuestions++;
 
     if (userAns == correct) {
-    score++;
+        score++;
+        streak++;
         // ✅ SHOW CORRECT
         document.getElementById("feedback").innerText = "Correct ✅";
     } else {
