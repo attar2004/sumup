@@ -207,6 +207,7 @@ function checkAnswer() {
         // ✅ SHOW CORRECT
         document.getElementById("feedback").innerText = "Correct ✅";
     } else {
+        streak = 0;
         // ❌ SHOW WRONG
         document.getElementById("feedback").innerText = "Wrong ❌";
 
@@ -231,6 +232,12 @@ function checkAnswer() {
         });
     }
 
+    if (streak > bestStreak) {
+    bestStreak = streak;
+    localStorage.setItem("bestStreak", bestStreak);
+    }
+
+    localStorage.setItem("streak", streak);
     document.getElementById("score").innerText = "Score: " + score;
     
     document.getElementById("feedback").innerText = "";
