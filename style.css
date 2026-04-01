@@ -505,3 +505,28 @@ body.auth-page {
     text-decoration: none;
     font-weight: bold;
 }
+
+body {
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard {
+    margin-top: 40px;
+    width: 95%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 14px;
+}
