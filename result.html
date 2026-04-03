@@ -21,6 +21,7 @@
     </div>
 
     <p id="scoreDetails"></p>
+    <p id="feedbackMessage"></p>
 
     <div id="wrongSection"></div>
 
@@ -43,6 +44,26 @@ let percentage = 0;
 if (total > 0) {
     percentage = (score / total) * 100;
 }
+
+let feedback = "";
+
+if (percentage == 100) {
+    feedback = "🔥 Perfect! You're unstoppable!";
+} 
+else if (percentage >= 80) {
+    feedback = "💪 Excellent work!";
+} 
+else if (percentage >= 60) {
+    feedback = "👍 Good job! Keep practicing!";
+} 
+else if (percentage >= 40) {
+    feedback = "🙂 Not bad, improve more!";
+} 
+else {
+    feedback = "🌱 Keep practicing, you will improve!";
+}
+
+document.getElementById("feedbackMessage").innerText = feedback;
 
 let bestScore = localStorage.getItem("bestScore") || 0;
 
