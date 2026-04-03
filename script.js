@@ -9,6 +9,7 @@ let selectedOperation;
 let wrongAnswers = [];
 let streak = 0;
 let bestStreak = 0;
+let askedQuestions = [];
 
 function startTest() {
     
@@ -128,6 +129,25 @@ function generateQuestion() {
             b = Math.floor(Math.random() * (max - min + 1)) + min;
         }
     }
+
+    // 🔁 Repeat one question after every 10 questions
+    if (totalQuestions > 0 && totalQuestions % 10 === 0 && askedQuestions.length > 0) {
+    
+    let randomQ = askedQuestions[Math.floor(Math.random() * askedQuestions.length)];
+    
+    a = randomQ.a;
+    b = randomQ.b;
+    selectedOperation = randomQ.op;
+    }
+
+    // ✅ Store question
+    if (askedQuestions.length < 20) {
+        askedQuestions.push({
+            a: a,
+            b: b,
+            op: selectedOperation
+        });
+    }
     
     // 🎯 SHOW QUESTION BASED ON TYPE
     if (type === "square5") {
@@ -196,7 +216,7 @@ function checkAnswer() {
         if (selectedOperation === "add") correct = a + b;
         else if (selectedOperation === "sub") correct = a - b;
         else if (selectedOperation === "mul") correct = a * b;
-        else if (selectedOperation === "div") correct = a / b;
+        else if (selectedOperation === "div") correct = Math.floor( a / b);
         }
 
     totalQuestions++;
